@@ -1,0 +1,78 @@
+#include <iostream>
+#include <string>
+#include <chrono>
+using namespace std;
+
+const int MAX_SIZE = 10;
+
+class Stack{
+private:
+    int num[MAX_SIZE];
+    int top;
+
+public:
+    Stack();
+    int push(int);
+    int pop();
+    int isEmpty();
+    int isFull();
+    void displayItems();
+
+};
+
+Stack::Stack() {top = -1;}
+
+int Stack::isEmpty() {
+    if (top == -1)
+        return 1;
+    else
+        return 0;
+}
+
+int Stack::isFull() {
+    if(top == (MAX_SIZE - 1))
+        return 1;
+    else
+        return 0;
+}
+
+int Stack::push(int n) {
+    if(isFull()){
+        return 0;
+    }
+    ++top;
+    num[top] = n;
+    return n;
+}
+
+int Stack::pop() {
+    int temp;
+    if(isEmpty())
+        return 0;
+    temp = num[top];
+    --top;
+    return temp;
+}
+
+void Stack::displayItems() {
+    int i;
+    cout << "STACK is: ";
+    for (i = (top); i >= 0; i--)
+        cout << num[i] << " ";
+    cout << endl;
+}
+
+int main(){
+    Stack stk;
+    int choice, n, temp;
+
+    stk.push(1);
+    stk.push(4);
+    stk.push(2);
+    stk.push(5);
+    stk.push(7);
+    stk.displayItems();
+    stk.pop();
+    cout << "STACK AFTER POP" << endl;
+    stk.displayItems();
+}
